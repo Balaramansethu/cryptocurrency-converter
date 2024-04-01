@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Select from 'react-select';
-import '../HomeComponent/HomeComponent.css';
-import Button from '@mui/material/Button';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Select from "react-select";
+import "../HomeComponent/HomeComponent.css";
+import Button from "@mui/material/Button";
 
 const HomeComponent = () => {
   const [currencySearch, setCurrencySearch] = useState('');
@@ -10,10 +10,13 @@ const HomeComponent = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [currencyOptions, setCurrencyOptions] = useState([]);
   const [cryptoOptions, setCryptoOptions] = useState([]);
+  const [inputvalue, setInputvalue] = useState(0)
 
   const apiFetch = () => {
     axios
-      .get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencySearch}&ids=${cryptoSearch}`)
+      .get(
+        `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currencySearch}&ids=${cryptoSearch}`
+      )
       .then((response) => {
         setSearchResult(response.data);
       });
@@ -21,11 +24,11 @@ const HomeComponent = () => {
 
   const fetchCurrencyOptions = () => {
     axios
-      .get('https://api.coingecko.com/api/v3/simple/supported_vs_currencies')
+      .get("https://api.coingecko.com/api/v3/simple/supported_vs_currencies")
       .then((response) => {
         const options = response.data.map((currency) => ({
           value: currency,
-          label: currency
+          label: currency,
         }));
         setCurrencyOptions(options);
       });
@@ -33,15 +36,19 @@ const HomeComponent = () => {
 
   const fetchCryptoOptions = () => {
     axios
-      .get('https://api.coingecko.com/api/v3/coins/list')
+      .get("https://api.coingecko.com/api/v3/coins/list")
       .then((response) => {
         const options = response.data.map((crypto) => ({
           value: crypto.id,
-          label: crypto.name
+          label: crypto.name,
         }));
         setCryptoOptions(options);
       });
   };
+
+  const handleInputValue = (event) => {
+    setInputvalue(event.target.value)
+  }
 
   useEffect(() => {
     fetchCurrencyOptions();
@@ -57,9 +64,10 @@ const HomeComponent = () => {
   };
 
   return (
-    <div className='container'>
+    <div className="container">
       <h1>Please select a currency and cryptocurrency</h1>
-      <div className='input-container'>
+      <div className="input-container">
+        <input type="text" placeholder=" Enter amount to convert" onChange={handleInputValue}/>
         <Select
           options={currencyOptions}
           onChange={handleCurrencySearch}
@@ -74,13 +82,16 @@ const HomeComponent = () => {
           isClearable
           isSearchable
         />
-        <Button variant="contained" onClick={apiFetch}>Submit</Button>
-        
+        <Button variant="contained" onClick={apiFetch}>
+          Submit
+        </Button>
       </div>
-      <div className='result'>
-      <h2>
+      <div className="result">
+        <h2>
           {searchResult.map((result) => (
-            <h2 className='result' key={result.id}>Current Price of {result.name} is : {result.current_price}</h2>
+            <h2 className="result" key={result.id}>
+              Current Price of {result.name} is : {result.current_price * inputvalue}
+            </h2>
           ))}
         </h2>
       </div>

@@ -1,45 +1,15 @@
-/* *{margin:0;}
-
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.input-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-}
-.result{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    width: 100%;
-} */
-
-
-
-
-
-
-/* HomeComponent.css */
 
 .container {
     max-width: 800px;
     margin: 0 auto;
+    margin-top:40px;
     padding: 20px;
-    background-color: #f8f8f8;
+    background-color: lightskyblue;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
+ 
   .input-container {
     display: flex;
     justify-content: space-between;
@@ -55,12 +25,12 @@
     height: 40px;
     margin-top: auto;
     margin-bottom: auto;
-    background-color: #4caf50;
+    background-color: #094a68;
     color: #fff;
   }
   
   .input-container .MuiButton-root:hover {
-    background-color: #388e3c;
+    background-color: #094a68;
   }
   
   .result {
