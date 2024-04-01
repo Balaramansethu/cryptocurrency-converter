@@ -80,7 +80,7 @@ const HomeComponent = () => {
       <div className='result'>
       <h2>
           {searchResult.map((result) => (
-            <h2 className='result' key={result.id}>Current Price of {result.name} is :{result.current_price}</h2>
+            <h2 className='result' key={result.id}>Current Price of {result.name} is : {result.current_price}</h2>
           ))}
         </h2>
       </div>
