@@ -90,7 +90,7 @@ const HomeComponent = () => {
         <h2>
           {searchResult.map((result) => (
             <h2 className="result" key={result.id}>
-              Current Price of {result.name} is : {result.current_price * inputvalue}
+              The converted value of {result.name} is : {result.current_price * inputvalue}
             </h2>
           ))}
         </h2>
